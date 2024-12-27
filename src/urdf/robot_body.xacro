@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <xacro:include filename="inertial_macros.xacro"/>
+
+    <!-- WORLD LINK [origin reference of frame] -->
+
+    <link name="base_link"> 
+    
+    </link>
+
+
+    <!-- BOX [box parts of the robot body] -->
+
+    <joint name="box_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="box_link"/>
+        <origin xyz="0 0 0.05"/>
+    </joint>
+
+    <link name="box_link">
+        <visual>
+            <origin xyz="0.1 0 0.1"/>
+            <geometry>
+                <box size="0.4 0.4 0.2"/>
+            </geometry>
+            <material name="green">
+                <color rgba="0.1 1 0.1 1"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="0.1 0 0.1"/>
+            <geometry>
+                <box size="0.4 0.4 0.2"/>
+            </geometry>
+        </collision>
+
+       <xacro:inertial_box mass="3" x="0.4" y="0.4" z="0.2">
+            <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+  <!-- cylinder [cylinder parts of the robot body] -->
+
+    <joint name="cylinder_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="cylinder_link"/>
+        <origin xyz="0.1 0 0.3" rpy="0 0 0" />
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <link name="cylinder_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.1" length="0.3"/>
+            </geometry>
+            <material name="red">
+                <color rgba="1 0.1 0.1 1"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.1" length="0.3"/>
+            </geometry>
+        </collision>
+
+       <xacro:inertial_cylinder mass="1" radius="0.1" length="0.3">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!-- camera [camera of robot] -->
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="cylinder_link"/>
+        <child link="camera_link"/>
+        <origin xyz="0 0 0.1"/>
+    </joint>
+
+    <link name="camera_link">
+        <visual>
+            <origin xyz="-0.1 0 0"/>
+            <geometry>
+                <box size="0.025 0.1 0.1"/>
+            </geometry>
+            <material name="cyan">
+                <color rgba="0 1 1 1"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="-0.1 0 0"/>
+            <geometry>
+                <box size="0.025 0.1 0.1"/>
+            </geometry>
+        </collision>
+
+       <xacro:inertial_box mass="0.25" x="0.025" y="0.1" z="0.1">
+            <origin xyz="-0.1 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+    
+</robot>
