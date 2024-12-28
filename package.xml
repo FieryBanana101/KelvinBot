@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>kelvinbot</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="m-fatih-im@todo.todo">m-fatih-im</maintainer>
-  <license>TODO: License declaration</license>
+  <version>0.0.1</version>
+  <description>Robot specializing in thermal visualizer</description>
+  <maintainer email="mhmd.fatih.im@gmail.com">m-fatih-im</maintainer>
+  <license>Apache license 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -17,5 +17,15 @@
   </export>
 
   <exec_depend>ros2launch</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>rqt_image_view</exec_depend>
+  <exec_depend>sensor_msgs.msg</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>cv2</exec_depend>
+  <exec_depend>numpy</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
 
 </package>
