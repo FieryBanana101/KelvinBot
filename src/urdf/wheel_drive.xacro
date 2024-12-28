@@ -135,7 +135,7 @@
                 <match field="data">16777236</match>
             </input>
             <output type="gz.msgs.Twist" topic="/cmd_vel">
-                linear: {x:0.0}, angular: {z:2.0}
+                linear: {x: 0.0}, angular: {z: 2.0}
             </output>
         </plugin>
 
