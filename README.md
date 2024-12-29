@@ -11,13 +11,34 @@ Kelvinbot adalah rancangan robot beroda yang dapat melakukan visualisasi suhu pa
 #### - Python3
 
 ## Panduan Instalasi
-Buat sebuah workspace ros2 (atau jika sudah ada, langsung pindah ke direktori workspace),
+Pertama buat sebuah workspace ros2 (atau jika sudah ada, langsung pindah ke direktori workspace),
 
 ```bash
 mkdir ros2_ws && cd ros2_ws
 ```
 
-Clone
+Kemudian, clone repositori ini dan lakukan build dengan colcon serta lakukan setup.
+
+```bash
+git clone https://github.com/FieryBanana101/KelvinBot
+colcon build --symlink-install
+source install/setup.bash
+```
+Instalasi selesai, jalankan simulasi dengan menggunakan ```ros2 launch```:
+
+```bash
+ros2 launch kelvinbot kelvinbot.launch.py
+```
+
+**Notes:**
+Setiap membuka terminal baru perlu dilakukan setup dengan ```install/setup.bash```, agar tidak harus selalu setup manual maka tambahkan command berikut ke ```~/.bashrc```:
+
+```bash
+echo "source $PATH_TO_WORKSPACE/install/setup.bash" >> ~/.bashrc
+```
+
+Ganti ```$PATH_TO_WORKSPACE``` dengan path workspace yang dimiliki.
+
 
 ## Manajemen Direktori
 
@@ -93,7 +114,7 @@ Thermal camera 16 bit Gazebo akan melakukan publish data tipe ```gz.msgs.Image``
 
 Kemudian dengan menggunakan ```ros_gz_bridge``` topic ```/thermal_camera``` akan dihubungkan ke sistem ROS. 
 
-Dengan menggunakan ```rclpy```, setiap frame dari ```/thermal_camera``` akan diambil. Selain itu akan jug dibuat topic ```/image_processor``` dan topic ```/final_image```.
+Dengan menggunakan ```rclpy```, setiap frame dari ```/thermal_camera``` akan diambil. Selain itu juga akan dibuat topic ```/image_processor``` dan topic ```/final_image```.
 
 Topic ```/image_processor``` akan melakukan pemrosesan gambar dari ```/thermal_camera``` dengan konversi dari ```gz.msgs.Image``` (tipe gazebo) menjadi ```sensor_msgs/msg/Image``` (tipe ROS) melalui ```cv_bridge``` dan objek deteksi melalui ```opencv``` dan ```numpy```. 
 
@@ -101,5 +122,5 @@ Frame yang telah diproses akan dipublish ke topic ```/final_image``` dan akan da
 
 ## Penjelasan alur kerja dan demonstrasi:
 ```console
-https://youtoub
+https://youtu.be/ck__dUD6nkg
 ```
