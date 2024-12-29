@@ -122,5 +122,5 @@ Frame yang telah diproses akan dipublish ke topic ```/final_image``` dan akan da
 
 ## Penjelasan alur kerja dan demonstrasi:
 ```console
-https://youtoub
+https://youtu.be/ck__dUD6nkg
 ```
