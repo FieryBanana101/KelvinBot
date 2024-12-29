@@ -12,8 +12,9 @@ def generate_launch_description():
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
     gz_launch_path = PathJoinSubstitution([pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'])
 
-    path_to_package = os.popen('ros2 pkg prefix kelvinbot').read().strip()+"/share/kelvinbot"
-    if(path_to_package == "Package not found"):
+    try:
+        path_to_package = get_package_share_directory('kelvinbot')
+    except:
         print("[Package kelvinbot is not properly installed, please refer to installation guide at https://github.com/FieryBanana101/KelvinBot/]")
 
     gz_args = DeclareLaunchArgument(
