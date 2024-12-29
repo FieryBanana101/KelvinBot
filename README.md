@@ -11,7 +11,13 @@ Kelvinbot adalah rancangan robot beroda yang dapat melakukan visualisasi suhu pa
 #### - Python3
 
 ## Panduan Instalasi
+Buat sebuah workspace ros2 (atau jika sudah ada, langsung pindah ke direktori workspace),
 
+```bash
+mkdir ros2_ws && cd ros2_ws
+```
+
+Clone
 
 ## Manajemen Direktori
 
@@ -73,6 +79,10 @@ Pada dasarnya, Launch File akan melakukan:
 Untuk memudahkan prosess build, terdapat file ```package.xml``` dan ```CMakeLists.txt``` yang akan mengatur dependensi dan kepentingan build lainnya seperti instalasi launch file, mengeksport environment variable yang diperlukan dan lain-lain.
 
 ## Alur Kerja ROS2 dan Gazebo
+
+![kelvinbot](https://github.com/FieryBanana101/KelvinBot/blob/main/media/Screenshot%20from%202024-12-29%2015-31-26.png)
+
+
 Terdapat system plugin differential drive yang menghubungkan kedua roda depan dari robot. Plugin tersebut akan menerima data dari topic gazebo ```/cmd_vel``` berupa tipe pesan ```geometry_msgs/msg/Twist``` (Kecepatan linear di sumbu-x dan Rotasi terhadap sumbu-z).
 
 Pusat kendali robot adalah melalui arrow key. Input akan didapat melalui GUI plugin gazebo ```key publisher```, plugin akan melakukan publish data tipe ```gz.msgs.Int32``` ke topic ```/keyboard/keypress``` yang berupa kode keyboard yang ditekan.
