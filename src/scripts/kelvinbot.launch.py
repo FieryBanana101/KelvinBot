@@ -1,5 +1,4 @@
 import os
-import sys
 
 from ament_index_python.packages import get_package_share_directory
 
@@ -13,16 +12,13 @@ def generate_launch_description():
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
     gz_launch_path = PathJoinSubstitution([pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'])
 
-    if(len(sys.argv) < 4):
-        path_to_package = "."
-    else:
-        path_to_package = sys.argv[3][10::]
-        if path_to_package[0] == "\"":
-            path_to_package = path_to_package[1:len(path_to_package)-1:]
+    path_to_package = os.popen('ros2 pkg prefix kelvinbot').read().strip()+"/share/kelvinbot"
+    if(path_to_package == "Package not found"):
+        print("[Package kelvinbot is not properly installed, please refer to installation guide at https://github.com/FieryBanana101/KelvinBot/]")
 
     gz_args = DeclareLaunchArgument(
         name='gz_args',
-        default_value= path_to_package+'/src/sdf/world.sdf',
+        default_value= path_to_package+'/sdf/world.sdf',
         description='World file (.sdf file).'
     )
 
@@ -34,7 +30,7 @@ def generate_launch_description():
                     )
 
     spawn_robot = Node(package='ros_gz_sim', executable='create',
-                        arguments=['-file', path_to_package+"/src/urdf/robot.urdf"],
+                        arguments=['-file', path_to_package+"/urdf/robot.urdf"],
                         output='screen')
 
     spawn_gz_ros_bridge =  Node(package='ros_gz_bridge', executable='parameter_bridge',
@@ -42,7 +38,7 @@ def generate_launch_description():
                                 output='screen')
 
     object_detection =  ExecuteProcess(
-                            cmd=['python3', path_to_package+'/src/scripts/object_detection.py'],
+                            cmd=['python3', path_to_package+'/scripts/object_detection.py'],
                             output='screen'
                         )
 

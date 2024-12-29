@@ -24,5 +24,7 @@ if(BUILD_TESTING)
 endif()
 
 install(DIRECTORY src/scripts DESTINATION share/kelvinbot)
+install(DIRECTORY src/urdf DESTINATION share/kelvinbot)
+install(DIRECTORY src/sdf DESTINATION share/kelvinbot)
 
 ament_package()
